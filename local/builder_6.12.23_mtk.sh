@@ -111,7 +111,7 @@ echo "正在克隆Rust 1.82.0工具链..." &&
 mkdir -p rust &&
 aria2c -s16 -x16 -k1M https://github.com/cctv18/oneplus_sm8650_toolchain/releases/download/LLVM-Clang19-r536225/rust.zip -o rust.zip &&
 unzip -q rust.zip -d rust &&
-rm -rf clang.zip &
+rm -rf rust.zip &
 
 echo "正在克隆构建工具..." &&
 aria2c -s16 -x16 -k1M https://github.com/cctv18/oneplus_sm8650_toolchain/releases/download/LLVM-Clang19-r536225/build-tools.zip -o build-tools.zip &&
