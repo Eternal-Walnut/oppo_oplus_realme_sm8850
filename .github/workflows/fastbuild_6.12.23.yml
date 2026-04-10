@@ -355,6 +355,20 @@ jobs:
             cd ./KernelSU
             patch -p1 < 10_enable_susfs_for_ksu.patch || true
           fi
+
+      - name: 应用 VFS 补丁
+        run: |
+          cd kernel_workspace
+          if [[ ${{ github.event.inputs.ksu_type }} != "none" ]]; then
+            echo "正在添加vfs补丁..."
+            git clone --depth=1 https://github.com/Enginex0/Super-Builders.git
+            cp ./Super-Builders/android16-6.12/ReSukiSU/patches/60_zeromount-android16-6.12.patch ./common/
+            cd ./common
+            patch -p1 < 60_zeromount-android16-6.12.patch || true
+            cd ..
+          else
+            echo "已选择无内置KernelSU模式，跳过vfs配置..."
+          fi
           
       - name: 应用lz4 1.10.0 & zstd 1.5.7补丁
         if: inputs.lz4_enable
